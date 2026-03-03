@@ -41,8 +41,8 @@ subprojects {
 
   tasks.withType<KotlinCompile>().configureEach {
     compilerOptions {
-      apiVersion = KotlinVersion.KOTLIN_2_0
-      languageVersion = KotlinVersion.KOTLIN_2_0
+      apiVersion = KotlinVersion.fromVersion("2.2")
+      languageVersion = KotlinVersion.fromVersion("2.2")
       jvmTarget = JvmTarget.JVM_17
       jvmTargetValidationMode = JvmTargetValidationMode.WARNING
       freeCompilerArgs.add("-Xjvm-default=all")
