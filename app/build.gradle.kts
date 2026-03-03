@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.teixeira.vcspace"
+        applicationId = "com.hypex.vcsr"
 
         vectorDrawables.useSupportLibrary = true
 
@@ -184,7 +184,6 @@ dependencies {
     implementation(libs.org.eclipse.jgit)
     implementation(libs.org.eclipse.lsp4j)
     implementation(libs.org.eclipse.lsp4j.jsonrpc)
-    implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp)
 
