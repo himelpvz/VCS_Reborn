@@ -18,8 +18,10 @@ package com.teixeira.vcspace.ui.theme
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -33,6 +35,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import com.teixeira.vcspace.core.settings.Settings.General.rememberFollowSystemTheme
 import com.teixeira.vcspace.core.settings.Settings.General.rememberIsAmoledMode
 import com.teixeira.vcspace.core.settings.Settings.General.rememberIsDarkMode
@@ -275,6 +278,16 @@ data class ColorFamily(
     val onColorContainer: Color
 )
 
+
+
+private val vscodeShapes = Shapes(
+    extraSmall = RoundedCornerShape(2.dp),
+    small = RoundedCornerShape(2.dp),
+    medium = RoundedCornerShape(4.dp),
+    large = RoundedCornerShape(6.dp),
+    extraLarge = RoundedCornerShape(8.dp)
+)
+
 val unspecified_scheme = ColorFamily(
     Color.Unspecified, Color.Unspecified, Color.Unspecified, Color.Unspecified
 )
@@ -309,6 +322,7 @@ fun VCSpaceTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
+        shapes = vscodeShapes,
     ) {
         CompositionLocalProvider(
             LocalContentColor provides androidx.compose.material3.LocalContentColor.current
@@ -325,6 +339,7 @@ fun VCSpaceTerminalTheme(
     MaterialTheme(
         colorScheme = darkScheme,
         typography = Typography,
+        shapes = vscodeShapes,
         content = content
     )
 }

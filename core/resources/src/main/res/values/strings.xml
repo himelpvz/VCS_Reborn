@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- English Language -->
-    <string name="app_name" translatable="false">Visual Code Space</string>
+    <string name="app_name" translatable="false">VCS Reborn</string>
 
     <!-- Actions -->
     <string name="open">Open</string>
@@ -97,7 +97,7 @@
 
     <!-- Storage Permission -->
     <string name="file_storage_access">Storage access</string>
-    <string name="file_storage_access_message">Visual Code Space needs access to storage to function properly.\n\nWhy should I grant storage permission?\nThis permission is required to create, delete, and save files.</string>
+    <string name="file_storage_access_message">VCS Reborn needs access to storage to function properly.\n\nWhy should I grant storage permission?\nThis permission is required to create, delete, and save files.</string>
     <string name="file_storage_access_grant">Grant permission</string>
 
     <!-- Terminal -->
@@ -118,7 +118,7 @@
     <string name="pref_configure_file_explorer">File Explorer</string>
     <string name="pref_configure_file_explorer_summary">General file explorer settings.</string>
     <string name="pref_about_github">GitHub</string>
-    <string name="pref_about_github_summary">Visual Code Space is open source!</string>
+    <string name="pref_about_github_summary">VCS Reborn is open source!</string>
     <string name="pref_aparence_uimode">UI Mode</string>
     <string name="pref_aparence_uimode_summary">Choose light or dark mode.</string>
     <string name="pref_aparence_uimode_value_followsys">Follow system</string>
