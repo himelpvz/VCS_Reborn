@@ -36,6 +36,14 @@ fun Project.configureBaseExtension() {
 }
 
 subprojects {
+  configurations.configureEach {
+    // Work around D8/R8 Kotlin metadata rewriting crashes from optional compose stability tracker runtime
+    exclude(group = "com.skydoves", module = "compose-stability-runtime")
+    exclude(group = "com.github.skydoves", module = "compose-stability-runtime")
+    exclude(group = "com.skydoves", module = "stability-runtime")
+    exclude(group = "com.github.skydoves", module = "stability-runtime")
+  }
+
   plugins.withId("com.android.application") { configureBaseExtension() }
   plugins.withId("com.android.library") { configureBaseExtension() }
 
