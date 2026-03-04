@@ -45,7 +45,7 @@ class VCSpaceEditor @JvmOverloads constructor(
     var onImportComponentListener: OnImportComponentListener? = null
 
     val commentRule: CommentRule?
-        get() = null
+        get() = (editorLanguage as? CommentRuleProvider)?.commentRule
 
     init {
         getComponent(EditorTextActionWindow::class.java).isEnabled = false
