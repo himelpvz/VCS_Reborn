@@ -19,11 +19,11 @@ buildscript {
 
 fun Project.configureBaseExtension() {
   extensions.findByType(BaseExtension::class)?.run {
-    compileSdkVersion(35)
+    compileSdkVersion(36)
 
     defaultConfig {
       minSdk = 26
-      targetSdk = 28
+      targetSdk = 35
       versionCode = 201
       versionName = "2.0.1"
     }
