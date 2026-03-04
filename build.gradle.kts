@@ -1,38 +1,12 @@
-import com.android.build.gradle.BaseExtension
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.dsl.jvm.JvmTargetValidationMode
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.dsl.LibraryExtension
 
 plugins {
   alias(libs.plugins.android.application) apply false
   alias(libs.plugins.android.library) apply false
-  alias(libs.plugins.kotlin) apply false
   alias(libs.plugins.kotlin.compose) apply false
   alias(libs.plugins.kotlin.serialization) apply false
   alias(libs.plugins.aboutlibraries) apply false
-}
-
-buildscript {
-  dependencies { classpath(libs.androidx.navigation.safe.args.gradle.plugin) }
-}
-
-fun Project.configureBaseExtension() {
-  extensions.findByType(BaseExtension::class)?.run {
-    compileSdkVersion(36)
-
-    defaultConfig {
-      minSdk = 26
-      targetSdk = 35
-      versionCode = 201
-      versionName = "2.0.1"
-    }
-
-    compileOptions {
-      sourceCompatibility = JavaVersion.VERSION_17
-      targetCompatibility = JavaVersion.VERSION_17
-    }
-  }
 }
 
 subprojects {
@@ -44,16 +18,36 @@ subprojects {
     exclude(group = "com.github.skydoves", module = "stability-runtime")
   }
 
-  plugins.withId("com.android.application") { configureBaseExtension() }
-  plugins.withId("com.android.library") { configureBaseExtension() }
+  pluginManager.withPlugin("com.android.application") {
+    extensions.configure<ApplicationExtension> {
+      compileSdk = 36
 
-  tasks.withType<KotlinCompile>().configureEach {
-    compilerOptions {
-      apiVersion = KotlinVersion.fromVersion("2.2")
-      languageVersion = KotlinVersion.fromVersion("2.2")
-      jvmTarget = JvmTarget.JVM_17
-      jvmTargetValidationMode = JvmTargetValidationMode.WARNING
-      freeCompilerArgs.add("-Xjvm-default=all")
+      defaultConfig {
+        minSdk = 26
+        targetSdk = 35
+        versionCode = 201
+        versionName = "2.0.1"
+      }
+
+      compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+      }
+    }
+  }
+
+  pluginManager.withPlugin("com.android.library") {
+    extensions.configure<LibraryExtension> {
+      compileSdk = 36
+
+      defaultConfig {
+        minSdk = 26
+      }
+
+      compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+      }
     }
   }
 }

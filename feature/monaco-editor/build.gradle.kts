@@ -1,10 +1,10 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.android.library)
 }
 
 android {
     namespace = "com.itsvks.monaco"
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 26

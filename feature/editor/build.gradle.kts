@@ -1,11 +1,13 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = "com.teixeira.vcspace.editor"
+    compileSdk = 36
+
+    defaultConfig { minSdk = 26 }
 
     buildTypes {
         release {
