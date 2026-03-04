@@ -13,13 +13,11 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.vcspace.plugins.event;
+package com.vcspace.plugins
 
-public interface EventListener {
-    /**
-     * Called when an event occurs.
-     *
-     * @param event the event that occurred
-     */
-    void onEvent(Event event);
+/**
+ * Represents a plugin interface that every plugin must implement.
+ */
+interface Plugin {
+    fun onPluginLoaded(context: PluginContext)
 }

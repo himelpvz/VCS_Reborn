@@ -13,8 +13,17 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.vcspace.plugins;
+package com.vcspace.plugins.command
 
-public interface ExtensionPoint {
-    void apply(PluginContext context);
+import com.vcspace.plugins.Editor
+
+/**
+ * Defines a command that can be executed within an editor.
+ */
+interface EditorCommand {
+    val commandId: String
+    val name: String
+    val keyBinding: String?
+
+    fun execute(editor: Editor)
 }

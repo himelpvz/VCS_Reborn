@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
     id("kotlin-parcelize")
-    id("androidx.navigation.safeargs.kotlin")
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.aboutlibraries)
@@ -12,15 +11,18 @@ plugins {
 
 android {
     namespace = "com.teixeira.vcspace"
+    compileSdk = 36
     ndkVersion = "28.0.13004108"
 
     androidResources {
         @Suppress("UnstableApiUsage")
         generateLocaleConfig = true
     }
+    
 
     defaultConfig {
         applicationId = "com.hypex.vcsr"
+        multiDexEnabled = true
 
         vectorDrawables.useSupportLibrary = true
 
@@ -109,7 +111,9 @@ android {
     }
 }
 
+
 dependencies {
+    
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

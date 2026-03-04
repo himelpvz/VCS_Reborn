@@ -16,6 +16,7 @@ package com.teixeira.vcspace.editor.language.textmate
 
 import android.os.Bundle
 import androidx.annotation.WorkerThread
+import com.teixeira.vcspace.editor.CommentRuleProvider
 import io.github.rosemoe.sora.lang.EmptyLanguage
 import io.github.rosemoe.sora.lang.analysis.AnalyzeManager
 import io.github.rosemoe.sora.lang.completion.CompletionHelper
@@ -43,7 +44,11 @@ class VCSpaceTMLanguage protected constructor(
     var grammarRegistry: GrammarRegistry,
     var themeRegistry: ThemeRegistry,
     @JvmField val createIdentifiers: Boolean
-) : EmptyLanguage() {
+) : EmptyLanguage(), CommentRuleProvider {
+
+    override val commentRule
+        get() = languageConfiguration?.comments
+
     /**
      * Set tab size. The tab size is used to compute code blocks.
      */

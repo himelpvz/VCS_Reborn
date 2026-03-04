@@ -37,6 +37,7 @@ open class BaseApplication : Application() {
         PreferenceManager.getDefaultSharedPreferences(this)
     }
 
+    @Suppress("DEPRECATION")
     val encryptedPrefs: SharedPreferences by lazy {
         try {
             val masterKey = MasterKey.Builder(this)

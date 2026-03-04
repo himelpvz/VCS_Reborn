@@ -13,20 +13,8 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.vcspace.plugins;
+package com.vcspace.plugins
 
-import androidx.annotation.NonNull;
-
-/**
- * Represents a plugin interface that every plugin must implement.
- * The main entry point for the plugin, providing access to the application context and functionalities.
- */
-public interface Plugin {
-
-    /**
-     * Called when the plugin is loaded into the application.
-     *
-     * @param context the context provided to interact with the application.
-     */
-    void onPluginLoaded(@NonNull PluginContext context);
+interface ExtensionPoint {
+    fun apply(context: PluginContext)
 }

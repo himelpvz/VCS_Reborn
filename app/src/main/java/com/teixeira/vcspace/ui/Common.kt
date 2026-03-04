@@ -59,21 +59,9 @@ fun rememberSheetState(
         skipPartiallyExpanded,
         confirmValueChange,
         skipHiddenState,
-        saver =
-            SheetState.Saver(
-                skipPartiallyExpanded = skipPartiallyExpanded,
-                confirmValueChange = confirmValueChange,
-                density = density,
-                skipHiddenState = skipHiddenState,
-            )
+        saver = SheetState.Saver(skipPartiallyExpanded, confirmValueChange, density, skipHiddenState)
     ) {
-        SheetState(
-            skipPartiallyExpanded,
-            density,
-            initialValue,
-            confirmValueChange,
-            skipHiddenState,
-        )
+        SheetState(skipPartiallyExpanded, density, initialValue, confirmValueChange, skipHiddenState)
     }
 }
 
