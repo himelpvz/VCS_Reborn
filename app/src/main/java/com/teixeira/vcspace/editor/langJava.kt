@@ -29,7 +29,7 @@ import io.github.rosemoe.sora.editor.ts.TsTheme
 import io.github.rosemoe.sora.editor.ts.TsThemeBuilder
 import io.github.rosemoe.sora.editor.ts.spans.DefaultSpanFactory
 import io.github.rosemoe.sora.lang.styling.Span
-import io.github.rosemoe.sora.lang.styling.SpanFactory
+import io.github.rosemoe.sora.lang.styling.Span
 import io.github.rosemoe.sora.lang.styling.Styles
 import io.github.rosemoe.sora.lang.styling.TextStyle.makeStyle
 import io.github.rosemoe.sora.lang.styling.span.SpanConstColorResolver
@@ -114,7 +114,7 @@ class TsJavaSpanFactory(
                 // and this color span
                 // fill the gap
                 spans.add(
-                    SpanFactory.obtain(
+                    Span.obtain(
                         column + e + 1,
                         spanStyle
                     )
@@ -155,7 +155,7 @@ class TsJavaSpanFactory(
             }
 
             val col = column + result.range.first
-            val span = SpanFactory.obtain(
+            val span = Span.obtain(
                 col,
                 makeStyle(
                     EditorColorScheme.STATIC_SPAN_FOREGROUND,
@@ -182,7 +182,7 @@ class TsJavaSpanFactory(
         if (s != 0) {
             spans.add(
                 0,
-                SpanFactory.obtain(
+                Span.obtain(
                     column,
                     spanStyle
                 )
@@ -191,7 +191,7 @@ class TsJavaSpanFactory(
 
         if (e != text.lastIndex) {
             spans.add(
-                SpanFactory.obtain(
+                Span.obtain(
                     column + e + 1,
                     spanStyle
                 )

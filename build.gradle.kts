@@ -4,6 +4,7 @@ import com.android.build.api.dsl.LibraryExtension
 plugins {
   alias(libs.plugins.android.application) apply false
   alias(libs.plugins.android.library) apply false
+  alias(libs.plugins.kotlin) apply false
   alias(libs.plugins.kotlin.compose) apply false
   alias(libs.plugins.kotlin.serialization) apply false
   alias(libs.plugins.aboutlibraries) apply false
@@ -16,6 +17,8 @@ subprojects {
     exclude(group = "com.github.skydoves", module = "compose-stability-runtime")
     exclude(group = "com.skydoves", module = "stability-runtime")
     exclude(group = "com.github.skydoves", module = "stability-runtime")
+    // Avoid duplicate parcelize classes when old transitive kotlin-android-extensions-runtime appears.
+    exclude(group = "org.jetbrains.kotlin", module = "kotlin-android-extensions-runtime")
   }
 
   pluginManager.withPlugin("com.android.application") {

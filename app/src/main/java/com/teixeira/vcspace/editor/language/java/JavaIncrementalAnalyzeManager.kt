@@ -23,7 +23,7 @@ import io.github.rosemoe.sora.lang.brackets.SimpleBracketsCollector
 import io.github.rosemoe.sora.lang.completion.IdentifierAutoComplete.SyncIdentifiers
 import io.github.rosemoe.sora.lang.styling.CodeBlock
 import io.github.rosemoe.sora.lang.styling.Span
-import io.github.rosemoe.sora.lang.styling.SpanFactory
+import io.github.rosemoe.sora.lang.styling.Span
 import io.github.rosemoe.sora.lang.styling.TextStyle
 import io.github.rosemoe.sora.lang.styling.color.EditorColor
 import io.github.rosemoe.sora.lang.styling.span.SpanClickableUrl
@@ -310,11 +310,11 @@ class JavaIncrementalAnalyzeManager :
             var span: Span
             when (token) {
                 Tokens.WHITESPACE, Tokens.NEWLINE -> span =
-                    SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.TEXT_NORMAL))
+                    Span.obtain(offset, TextStyle.makeStyle(EditorColorScheme.TEXT_NORMAL))
 
                 Tokens.CHARACTER_LITERAL, Tokens.FLOATING_POINT_LITERAL, Tokens.INTEGER_LITERAL, Tokens.STRING -> {
                     classNamePrevious = false
-                    span = SpanFactory.obtain(
+                    span = Span.obtain(
                         offset,
                         TextStyle.makeStyle(EditorColorScheme.LITERAL, true)
                     )
@@ -322,7 +322,7 @@ class JavaIncrementalAnalyzeManager :
 
                 Tokens.INT, Tokens.LONG, Tokens.BOOLEAN, Tokens.BYTE, Tokens.CHAR, Tokens.FLOAT, Tokens.DOUBLE, Tokens.SHORT, Tokens.VOID, Tokens.VAR -> {
                     classNamePrevious = true
-                    span = SpanFactory.obtain(
+                    span = Span.obtain(
                         offset,
                         TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false)
                     )
@@ -330,14 +330,14 @@ class JavaIncrementalAnalyzeManager :
 
                 Tokens.ABSTRACT, Tokens.ASSERT, Tokens.CLASS, Tokens.DO, Tokens.FINAL, Tokens.FOR, Tokens.IF, Tokens.NEW, Tokens.PUBLIC, Tokens.PRIVATE, Tokens.PROTECTED, Tokens.PACKAGE, Tokens.RETURN, Tokens.STATIC, Tokens.SUPER, Tokens.SWITCH, Tokens.ELSE, Tokens.VOLATILE, Tokens.SYNCHRONIZED, Tokens.STRICTFP, Tokens.GOTO, Tokens.CONTINUE, Tokens.BREAK, Tokens.TRANSIENT, Tokens.TRY, Tokens.CATCH, Tokens.FINALLY, Tokens.WHILE, Tokens.CASE, Tokens.DEFAULT, Tokens.CONST, Tokens.ENUM, Tokens.EXTENDS, Tokens.IMPLEMENTS, Tokens.IMPORT, Tokens.INSTANCEOF, Tokens.INTERFACE, Tokens.NATIVE, Tokens.THIS, Tokens.THROW, Tokens.THROWS, Tokens.TRUE, Tokens.FALSE, Tokens.NULL, Tokens.SEALED, Tokens.PERMITS -> {
                     classNamePrevious = false
-                    span = SpanFactory.obtain(
+                    span = Span.obtain(
                         offset,
                         TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false)
                     )
                 }
 
                 Tokens.LINE_COMMENT, Tokens.LONG_COMMENT_COMPLETE, Tokens.LONG_COMMENT_INCOMPLETE -> span =
-                    SpanFactory.obtain(
+                    Span.obtain(
                         offset,
                         TextStyle.makeStyle(EditorColorScheme.COMMENT, 0, false, true, false, true)
                     )
@@ -369,16 +369,16 @@ class JavaIncrementalAnalyzeManager :
                             }
                         }
                     }
-                    span = SpanFactory.obtain(offset, TextStyle.makeStyle(type))
+                    span = Span.obtain(offset, TextStyle.makeStyle(type))
                 }
 
                 else -> {
                     if (token == Tokens.LBRACK || (token == Tokens.RBRACK && previous == Tokens.LBRACK)) {
-                        span = SpanFactory.obtain(offset, EditorColorScheme.OPERATOR.toLong())
+                        span = Span.obtain(offset, EditorColorScheme.OPERATOR.toLong())
                         break
                     }
                     classNamePrevious = false
-                    span = SpanFactory.obtain(offset, EditorColorScheme.OPERATOR.toLong())
+                    span = Span.obtain(offset, EditorColorScheme.OPERATOR.toLong())
                 }
             }
             when (token) {

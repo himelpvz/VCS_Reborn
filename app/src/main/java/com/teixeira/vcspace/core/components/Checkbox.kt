@@ -29,8 +29,6 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.material3.CheckboxColors
 import androidx.compose.material3.CheckboxDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LocalUseFallbackRippleImplementation
 import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
@@ -102,19 +100,13 @@ fun TriStateCheckbox(
     )
 }
 
-@Suppress("DEPRECATION_ERROR")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun rippleOrFallbackImplementation(
     bounded: Boolean = true,
     radius: Dp = Dp.Unspecified,
     color: Color = Color.Unspecified
 ): Indication {
-    return if (LocalUseFallbackRippleImplementation.current) {
-        androidx.compose.material.ripple.rememberRipple(bounded, radius, color)
-    } else {
-        ripple(bounded, radius, color)
-    }
+    return ripple(bounded, radius, color)
 }
 
 @Composable

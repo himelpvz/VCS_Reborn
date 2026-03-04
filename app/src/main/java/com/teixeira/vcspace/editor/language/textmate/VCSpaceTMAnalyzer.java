@@ -43,7 +43,6 @@ import io.github.rosemoe.sora.lang.brackets.OnlineBracketsMatcher;
 import io.github.rosemoe.sora.lang.completion.IdentifierAutoComplete;
 import io.github.rosemoe.sora.lang.styling.CodeBlock;
 import io.github.rosemoe.sora.lang.styling.Span;
-import io.github.rosemoe.sora.lang.styling.SpanFactory;
 import io.github.rosemoe.sora.lang.styling.TextStyle;
 import io.github.rosemoe.sora.langs.textmate.MyState;
 import io.github.rosemoe.sora.langs.textmate.folding.FoldingHelper;
@@ -207,7 +206,7 @@ public class VCSpaceTMAnalyzer extends AsyncIncrementalAnalyzeManager<MyState, S
     for (int i = 0; i < tokensLength; i++) {
       int startIndex = StringUtils.convertUnicodeOffsetToUtf16(line, lineTokens.getTokens()[2 * i], surrogate);
       if (i == 0 && startIndex != 0) {
-        tokens.add(SpanFactory.obtain(0, EditorColorScheme.TEXT_NORMAL));
+        tokens.add(Span.obtain(0, EditorColorScheme.TEXT_NORMAL));
       }
       int metadata = lineTokens.getTokens()[2 * i + 1];
       int foreground = EncodedTokenAttributes.getForeground(metadata);
@@ -231,7 +230,7 @@ public class VCSpaceTMAnalyzer extends AsyncIncrementalAnalyzeManager<MyState, S
           }
         }
       }
-      Span span = SpanFactory.obtain(startIndex, TextStyle.makeStyle(foreground + 255, 0, (fontStyle & FontStyle.Bold) != 0, (fontStyle & FontStyle.Italic) != 0, false));
+      Span span = Span.obtain(startIndex, TextStyle.makeStyle(foreground + 255, 0, (fontStyle & FontStyle.Bold) != 0, (fontStyle & FontStyle.Italic) != 0, false));
 
       span.setExtra(tokenType);
 
