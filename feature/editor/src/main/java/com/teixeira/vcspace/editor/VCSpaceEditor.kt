@@ -46,7 +46,7 @@ class VCSpaceEditor @JvmOverloads constructor(
     var onImportComponentListener: OnImportComponentListener? = null
 
     val commentRule: CommentRule?
-        get() = (editorLanguage as? TextMateLanguage)?.languageConfiguration?.comments
+        get() = (editorLanguage as? TextMateLanguage)?.resolveCommentRule()
 
     init {
         getComponent(EditorTextActionWindow::class.java).isEnabled = false
@@ -82,4 +82,17 @@ class VCSpaceEditor @JvmOverloads constructor(
                 EditorInfo.TYPE_TEXT_FLAG_NO_SUGGESTIONS
         }
     }
+}
+
+private fun TextMateLanguage.resolveCommentRule(): CommentRule? {
+    val config = runCatching {
+        javaClass.getMethod("getLanguageConfiguration").invoke(this)
+    }.getOrNull()
+        ?: runCatching {
+            javaClass.getDeclaredField("languageConfiguration").apply {
+                isAccessible = true
+            }.get(this)
+        }.getOrNull()
+
+    return (config as? org.eclipse.tm4e.languageconfiguration.internal.model.LanguageConfiguration)?.comments
 }

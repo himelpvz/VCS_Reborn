@@ -91,7 +91,7 @@ class TextActionsWindow(
     }
 
     override fun show() {
-        if (editor.snippetController.isInSnippet() || editor.isInMouseMode) {
+        if (editor.snippetController.isInSnippet()) {
             return
         }
         super.show()
