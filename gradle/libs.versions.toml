@@ -2,7 +2,7 @@
 android-tree-sitter = "4.3.1"
 androidsvg = "1.4"
 browser = "1.8.0"
-bsh = "3.0.0-SNAPSHOT"
+bsh = "2.0b5"
 compose-markdown = "0.5.4"
 editor = "0.23.1"
 androidx-navigation = "2.9.0"
@@ -39,7 +39,7 @@ orbit = "0.39.0"
 [libraries]
 
 # AndroidX
-androidx-annotation = { module = "androidx.annotation:annotation", version = "1.10.4" }
+androidx-annotation = { module = "androidx.annotation:annotation", version = "1.9.1" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version = "1.7.1" }
 androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
 androidx-core = { module = "androidx.core:core", version = "1.17.0" }
