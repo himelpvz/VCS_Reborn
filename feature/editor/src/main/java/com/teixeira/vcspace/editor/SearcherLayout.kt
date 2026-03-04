@@ -136,7 +136,7 @@ class SearcherLayout @JvmOverloads constructor(
 
     private fun replace() {
         try {
-            searcher?.replaceCurrentMatch(binding.replaceText.text.toString())
+            searcher?.replaceCurrent(binding.replaceText.text.toString())
         } catch (e: IllegalStateException) {
             e.printStackTrace()
         }
@@ -144,9 +144,28 @@ class SearcherLayout @JvmOverloads constructor(
 
     private fun replaceAll() {
         try {
-            searcher?.replaceAll(binding.replaceText.text.toString())
+            searcher?.replaceAllCompat(binding.replaceText.text.toString())
         } catch (e: IllegalStateException) {
             e.printStackTrace()
         }
     }
 }
+
+private fun EditorSearcher.replaceCurrent(replacement: String) {
+    invokeMethod("replaceCurrentMatch", replacement)
+        ?: invokeMethod("replaceThis", replacement)
+        ?: invokeMethod("replaceCurrent", replacement)
+        ?: error("No compatible replace-current method found on EditorSearcher")
+}
+
+private fun EditorSearcher.replaceAllCompat(replacement: String) {
+    invokeMethod("replaceAll", replacement)
+        ?: error("No compatible replace-all method found on EditorSearcher")
+}
+
+private fun EditorSearcher.invokeMethod(name: String, replacement: String): Any? {
+    return runCatching {
+        javaClass.getMethod(name, String::class.java).invoke(this, replacement)
+    }.getOrNull()
+}
+
